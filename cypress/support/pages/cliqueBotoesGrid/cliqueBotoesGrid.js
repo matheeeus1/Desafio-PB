@@ -1,0 +1,76 @@
+const el = require('./elements').ELEMENTS
+
+class CliqueGrid {
+    cliquePrimeiralinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit1).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete1).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+    cliqueSegundalinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit2).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete2).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+    cliqueTerceiralinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit3).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete3).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+    cliqueQuartalinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit4).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete4).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+    cliqueQuintalinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit5).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete5).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+    cliqueSextalinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit6).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete6).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+    cliqueSetimalinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit7).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete7).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+    cliqueOitavalinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit8).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete8).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+    cliqueNonalinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit9).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete9).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+    cliqueDecimalinha(){
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom')
+        cy.get(el.edit10).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#edit')
+        cy.get(el.delete10).click()
+        cy.url().should('be.equal','https://the-internet.herokuapp.com/challenging_dom#delete')
+    }
+}
+
+export default new CliqueGrid();

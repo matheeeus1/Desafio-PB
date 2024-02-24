@@ -1,0 +1,17 @@
+{
+  "name": "desafio-pb",
+  "version": "1.0.0",
+  "description": "Desafio PB",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "author": "Matheus Pascoal",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^13.6.6"
+  },
+  "dependencies": {
+    "cypress-plugin-api": "^2.11.1"
+  }
+}

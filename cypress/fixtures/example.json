@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "Teste PB",
+  "username": "Teste PB",
+  "email": "Teste PB@Teste PB",
+  "address": {
+      "street": "Teste PB",
+      "suite": "Teste PB. 556",
+      "city": "Teste PB",
+      "zipcode": "92998-3874",
+      "geo": {
+          "lat": "-37.3159",
+          "lng": "81.1496"
+      }
+  },
+  "phone": "1-770-736-8031 x56442",
+  "website": "Teste PB.org",
+  "company": {
+      "name": "Teste PB",
+      "catchPhrase": "Teste PB",
+      "bs": "Teste PB"
+  }
+}
