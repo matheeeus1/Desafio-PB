@@ -1,16 +1,13 @@
 import cliqueBotoes from "../../support/pages/cliqueBotoesLaterais/cliqueBotoesLaterais";
 
-describe('Clicar nos 3 botões laterais do site', () => {
+describe('Clique nos 3 botões laterais do site', () => {
     beforeEach(() => {
-        cy.visit('https://the-internet.herokuapp.com/challenging_dom')
+        cy.visit('/challenging_dom')
     });
-    it('Clicar no primeiro botão (azul)', () => {
+    it('Clicar em todos os botões laterais', () => {
+        cy.viewport(1440, 900)
         cliqueBotoes.clicarBotaoAzul();
-    });
-    it('Clicar no segundo botão (vermelho)', () => {
         cliqueBotoes.clicarBotaoVermelho();
-    });
-    it('Clicar no terceiro botão (verde)', () => {
         cliqueBotoes.clicarBotaoVerde();
     });
 });
