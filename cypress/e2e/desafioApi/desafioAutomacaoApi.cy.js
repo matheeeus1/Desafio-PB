@@ -12,6 +12,8 @@ describe('Validar schema json', () => {
             cy.fixture('schemaApi').then((schemaApi) => {
                 const validate = ajv.compile(schemaApi)
                 const valid = validate(res.body)
+                expect(res.status).to.equal(200)
+                expect(res.statusText).to.equal('OK')
                 if (!valid) cy.log(validate.errors).then(()=>{
                     throw new Error('Falha do contrato, Ver log acima')
                 })
