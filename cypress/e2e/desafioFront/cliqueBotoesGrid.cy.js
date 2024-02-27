@@ -1,3 +1,5 @@
+/// <reference types="cypress"/>
+
 import cliqueBotoesGrid from "../../support/pages/cliqueBotoesGrid/cliqueBotoesGrid";
 
 describe('Clique nos botões de "edit" e "delete"', () => {

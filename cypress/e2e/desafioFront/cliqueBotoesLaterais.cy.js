@@ -1,3 +1,5 @@
+/// <reference types="cypress"/>
+
 import cliqueBotoes from "../../support/pages/cliqueBotoesLaterais/cliqueBotoesLaterais";
 
 describe('Clique nos 3 botões laterais do site', () => {

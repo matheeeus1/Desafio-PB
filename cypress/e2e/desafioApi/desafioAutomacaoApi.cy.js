@@ -1,9 +1,30 @@
-describe('Healthcheck', () => {
-    it('healthcheck', () => {
+/// <reference types="cypress"/>
+
+const Ajv = require("ajv")
+const ajv = new Ajv({allErrors: true, verbose: true})
+
+describe('Validar schema json', () => {
+    it('Validar schema json', () => {
         cy.api({
-            method:'GET',
-            url:'http://jsonplaceholder.typicode.com/users'
-        }).should((res)=>{
+            method: 'GET',
+            url: 'http://jsonplaceholder.typicode.com/users/1'
+        }).then((res) => {
+            cy.fixture('schemaApi').then((schemaApi) => {
+                const validate = ajv.compile(schemaApi)
+                const valid = validate(res.body)
+                if (!valid) cy.log(validate.errors).then(()=>{
+                    throw new Error('Falha do contrato, Ver log acima')
+                })
+            })
+        })
+    })
+});
+describe('Healthcheck', () => {
+    it('Healtcheck', () => {
+        cy.api({
+            method: 'GET',
+            url: 'http://jsonplaceholder.typicode.com/users'
+        }).should((res) => {
             expect(res.status).to.equal(200)
             expect(res.statusText).to.equal('OK')
         })
@@ -12,9 +33,9 @@ describe('Healthcheck', () => {
 describe('GET', () => {
     it('Listar todos registros', () => {
         cy.api({
-            method:'GET',
-            url:'http://jsonplaceholder.typicode.com/users'
-        }).should((res)=>{
+            method: 'GET',
+            url: 'http://jsonplaceholder.typicode.com/users'
+        }).should((res) => {
             expect(res.status).to.equal(200)
             expect(res.statusText).to.equal('OK')
             expect(res.body).is.not.empty
@@ -22,9 +43,9 @@ describe('GET', () => {
     });
     it('Listar registro por id', () => {
         cy.api({
-            method:'GET',
-            url:'http://jsonplaceholder.typicode.com/users/1'
-        }).should((res)=>{
+            method: 'GET',
+            url: 'http://jsonplaceholder.typicode.com/users/1'
+        }).should((res) => {
             expect(res.status).to.equal(200)
             expect(res.statusText).to.equal('OK')
             expect(res.body).is.not.empty
@@ -40,10 +61,10 @@ describe('GET', () => {
     });
     it('Listar registro com id inválido', () => {
         cy.api({
-            method:'GET',
-            url:'http://jsonplaceholder.typicode.com/users/11',
+            method: 'GET',
+            url: 'http://jsonplaceholder.typicode.com/users/11',
             failOnStatusCode: false
-        }).should((res)=>{
+        }).should((res) => {
             expect(res.status).to.equal(404)
             expect(res.statusText).to.equal('Not Found')
             expect(res.body).is.empty
@@ -53,9 +74,9 @@ describe('GET', () => {
 describe('POST', () => {
     it('Inserir registro válido', () => {
         cy.api({
-            method:'POST',
-            url:'http://jsonplaceholder.typicode.com/users',
-            body:{
+            method: 'POST',
+            url: 'http://jsonplaceholder.typicode.com/users',
+            body: {
                 "id": "",
                 "name": "Teste PB",
                 "username": "Teste PB",
@@ -78,7 +99,7 @@ describe('POST', () => {
                     "bs": "Teste PB"
                 }
             }
-        }).should((res)=>{
+        }).should((res) => {
             expect(res.status).to.equal(201)
             expect(res.statusText).to.equal('Created')
             expect(res.body).is.not.empty
@@ -87,9 +108,9 @@ describe('POST', () => {
     });
     it('Inserir registro inválido', () => {
         cy.api({
-            method:'POST',
-            url:'http://jsonplaceholder.typicode.com/users/1', //Como o endpoint aceita com sucesso qualquer coisa no body (até mesmo vazio), a única forma de simular um erro é com uma URL inválida para o método POST.
-            body:{
+            method: 'POST',
+            url: 'http://jsonplaceholder.typicode.com/users/1', //Como o endpoint aceita com sucesso qualquer coisa no body (até mesmo vazio), a única forma de simular um erro é com uma URL inválida para o método POST.
+            body: {
                 "id": "",
                 "name": "Teste PB",
                 "username": "Teste PB",
@@ -113,7 +134,7 @@ describe('POST', () => {
                 }
             },
             failOnStatusCode: false
-        }).should((res)=>{
+        }).should((res) => {
             expect(res.status).to.equal(404)
             expect(res.statusText).to.equal('Not Found')
             expect(res.body).is.empty
@@ -123,9 +144,9 @@ describe('POST', () => {
 describe('PUT', () => {
     it('Alterar dado de um registro registrado válido', () => {
         cy.api({
-            method:'PUT',
-            url:'http://jsonplaceholder.typicode.com/users/1',
-            body:{
+            method: 'PUT',
+            url: 'http://jsonplaceholder.typicode.com/users/1',
+            body: {
                 "id": 1,
                 "name": "TESTE PB",
                 "username": "Bret",
@@ -149,7 +170,7 @@ describe('PUT', () => {
                 }
             }
 
-        }).should((res)=>{
+        }).should((res) => {
             expect(res.status).to.equal(200)
             expect(res.statusText).to.equal('OK')
             expect(res.body).is.not.empty
@@ -160,9 +181,9 @@ describe('PUT', () => {
     });
     it('Alterar registro inválido', () => {
         cy.api({
-            method:'PUT',
-            url:'http://jsonplaceholder.typicode.com/users/', //Como o endpoint aceita com sucesso qualquer coisa no body (até mesmo vazio), a única forma de simular um erro é com uma URL inválida para o método PUT.
-            body:{
+            method: 'PUT',
+            url: 'http://jsonplaceholder.typicode.com/users/', //Como o endpoint aceita com sucesso qualquer coisa no body (até mesmo vazio), a única forma de simular um erro é com uma URL inválida para o método PUT.
+            body: {
                 "id": 1,
                 "name": "TESTE PB",
                 "username": "Bret",
@@ -186,7 +207,7 @@ describe('PUT', () => {
                 }
             },
             failOnStatusCode: false
-        }).should((res)=>{
+        }).should((res) => {
             expect(res.status).to.equal(404)
             expect(res.statusText).to.equal('Not Found')
             expect(res.body).is.empty
@@ -196,9 +217,9 @@ describe('PUT', () => {
 describe('DELETE', () => {
     it('Apagar registro válido informando id', () => {
         cy.api({
-            method:'DELETE',
-            url:'http://jsonplaceholder.typicode.com/users/1'
-        }).should((res)=>{
+            method: 'DELETE',
+            url: 'http://jsonplaceholder.typicode.com/users/1'
+        }).should((res) => {
             expect(res.status).to.equal(200)
             expect(res.statusText).to.equal('OK')
             expect(res.body).is.empty;
@@ -206,10 +227,10 @@ describe('DELETE', () => {
     });
     it('Apagar registro sem informar id', () => {
         cy.api({
-            method:'DELETE',
-            url:'http://jsonplaceholder.typicode.com/users/',
+            method: 'DELETE',
+            url: 'http://jsonplaceholder.typicode.com/users/',
             failOnStatusCode: false
-        }).should((res)=>{
+        }).should((res) => {
             expect(res.status).to.equal(404)
             expect(res.statusText).to.equal('Not Found')
             expect(res.body).is.empty;
